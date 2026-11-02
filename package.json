@@ -1,0 +1,17 @@
+{
+  "name": "bge-oracle",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "oracle": "bun run src/index.mjs",
+    "test": "bun test"
+  },
+  "bin": {
+    "bge-oracle": "./bin/bge-oracle"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.4.4",
+    "bun-types": "^1.4.4"
+  }
+}
