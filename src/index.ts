@@ -1,5 +1,5 @@
-// @ts-nocheck
 #!/usr/bin/env bun
+// @ts-nocheck
 const HF_BASE = process.env.HF_BASE_URL || "https://freeinference.org/v1";
 const HF_KEY = process.env.HF_API_KEY || "";
 const fmt = (v) => v.toFixed(4);
