@@ -1,14 +1,24 @@
 {
   "name": "bge-oracle",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
+  "description": "bge-m3 home: canonical embedding lib (@bge/lib) + oracle W1-W11 + firewall classifier.",
   "scripts": {
-    "oracle": "bun run src/index.mjs",
-    "test": "bun test"
+    "test": "bun test",
+    "oracle": "bun bge/cli.ts oracle",
+    "classify": "bun bge/cli.ts classify",
+    "embed": "bun bge/cli.ts embed",
+    "firewall": "bun bge/cli.ts firewall"
   },
   "bin": {
-    "bge-oracle": "./bin/bge-oracle"
+    "bge": "./bge/cli.ts"
+  },
+  "exports": {
+    ".": "./bge/bge.ts",
+    "./bge": "./bge/bge.ts",
+    "./oracle": "./bge/oracle.ts",
+    "./cli": "./bge/cli.ts"
   },
   "devDependencies": {
     "@types/bun": "^1.4.4",

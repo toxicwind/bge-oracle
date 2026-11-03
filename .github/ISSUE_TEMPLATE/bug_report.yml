@@ -1,0 +1,28 @@
+name: Bug report
+about: Report a defect in bge-oracle
+title: "[bug] "
+labels: bug
+body:
+  - type: textarea
+    attributes:
+      label: What happened?
+      description: Include the exact error and the embedding endpoint used.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Reproduction
+      description: Minimal code that triggers it.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Environment
+      description: Bun version, model, base URL, API key type (secretsmith/env/.env)
+    validations:
+      required: true

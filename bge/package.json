@@ -1,0 +1,17 @@
+{
+  "name": "@bge/lib",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Canonical bge-m3 embedding lane — import from here, never re-implement fetch+cosine.",
+  "scripts": {
+    "test": "bun test"
+  },
+  "exports": {
+    ".": "./bge.ts",
+    "./oracle": "./oracle.ts",
+    "./cli": "./cli.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.4.4"
+  }
+}
