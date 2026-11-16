@@ -6,7 +6,7 @@
  * lane is the ONE embed source (2026-11-02 consolidation; the earlier
  * "401 rotation" ticket was a wrong-path misdiagnosis).
  *
- * Consumers: forge ops, wip-to-product classifier, estate classifiers —
+ * Consumers: forge ops, wip-to-product classifier, pens classifiers —
  * everything imports from here instead of re-implementing fetch+cosine.
  */
 import type { Subprocess } from "bun";
@@ -29,7 +29,7 @@ function deriveRepoUrl(): string {
       if (ssh) return `https://github.com/${ssh[1]}`;
     }
   } catch {}
-  return "https://github.com/toxicwind/bge-oracle";
+  return "https://github.com/toxicwind/embedding-oracle";
 }
 
 /** Canonical repo URL (derived from git remote; never hardcoded). */
@@ -55,17 +55,17 @@ export interface ClassifyResult<T extends string> {
 const DEFAULT_MODEL = "bge-m3";
 // ANY OpenAI-compatible `/v1/embeddings` endpoint: override via
 // BGE_EMBED_BASE_URL (or legacy HF_BASE_URL) in env/.env; defaults to the
-// estate's canonical freeinference lane.
+// pens's canonical freeinference lane.
 const DEFAULT_BASE =
   process.env.BGE_EMBED_BASE_URL ??
   process.env.HF_BASE_URL ??
   "https://freeinference.org/v1/embeddings";
 
-// ── Credential resolution: secretsmith keyring FIRST (fast estate SSOT),
+// ── Credential resolution: secretsmith keyring FIRST (fast pens SSOT),
 // then plain env, then a local .env file. New setups without the keyring
-// fall through to env; the estate always uses the keyring route.
+// fall through to env; the pens always uses the keyring route.
 async function resolveApiKey(): Promise<string> {
-  // 1. secretsmith (estate SSOT, fast): `secretsmith env` emits KEY=VAL lines.
+  // 1. secretsmith (pens SSOT, fast): `secretsmith env` emits KEY=VAL lines.
   //    NOTE: the secretsmith CLI is BANNED in agent shells (2026-11-08) — this
   //    lane now reads the on-box key file directly (same file argos uses).
   const p = Bun.spawn(["sh", "-c", "cat ${HOME}/.tau/freeinference.key 2>/dev/null | tr -d '\\n'"], {
@@ -75,14 +75,14 @@ async function resolveApiKey(): Promise<string> {
   await p.exited;
   if (out.trim()) return out.trim();
 
-  // 2. Plain environment (localhost / CI / non-estate setup).
+  // 2. Plain environment (localhost / CI / non-pens setup).
   if (process.env.FREEINFERENCE_API_KEY?.trim()) return process.env.FREEINFERENCE_API_KEY.trim();
   if (process.env.HF_API_KEY?.trim()) return process.env.HF_API_KEY.trim();
 
   // 2b. The on-box agent key file (argos's own lane: pitchfork reads
   // `cat ~/.tau/freeinference.key` for ARGOS_EMBEDDING_API_KEY). The
   // secretsmith CLI is banned in agent shells (2026-11-08), so this file is
-  // the reliable estate fallback — same key, same lane, no CLI.
+  // the reliable pens fallback — same key, same lane, no CLI.
   try {
     const home = process.env.HOME ?? "";
     if (home) {

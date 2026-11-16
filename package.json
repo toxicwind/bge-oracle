@@ -1,5 +1,5 @@
 {
-  "name": "bge-oracle",
+  "name": "embedding-oracle",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -8,7 +8,7 @@
     "test": "bun test"
   },
   "bin": {
-    "bge-oracle": "./bin/bge-oracle"
+    "embedding-oracle": "./bin/embedding-oracle"
   },
   "devDependencies": {
     "@types/bun": "^1.4.4",

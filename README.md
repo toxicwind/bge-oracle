@@ -1,4 +1,4 @@
-# bge-oracle
+# embedding-oracle
 
 BGE-M3 multi-vector oracle experiments — W1 through W8.
 
