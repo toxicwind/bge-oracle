@@ -1,0 +1,22 @@
+[
+  {
+    "from": "bge-oracle",
+    "to": "embedding-oracle",
+    "file": "README.md"
+  },
+  {
+    "from": "bge-oracle",
+    "to": "embedding-oracle",
+    "file": "bge/bge.ts"
+  },
+  {
+    "from": "bge-oracle",
+    "to": "embedding-oracle",
+    "file": "package.json"
+  },
+  {
+    "from": "bge-oracle",
+    "to": "embedding-oracle",
+    "file": "src/index.ts"
+  }
+]
